@@ -1,0 +1,7 @@
+#!/bin/bash
+cd ~/Documents/Estudio/Python/web_scraping
+source enviroment/bin/activate
+cd scraping
+python3 dolar_scraping.py
+
+
