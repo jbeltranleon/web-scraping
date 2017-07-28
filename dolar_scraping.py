@@ -1,4 +1,6 @@
 import requests
+import csv
+import os
 import urllib.request
 from bs4 import BeautifulSoup
 
@@ -24,13 +26,24 @@ def online_values():
     one_cop_without_dot = one_cop.replace('.', '')
     one_cop_ready_to_parse = one_cop_without_dot.replace(',', '.')
     one_cop_float = float(one_cop_ready_to_parse)
+
+    save(one_dollar_float, one_cop_float)
     operate(one_dollar_float, one_cop_float)
 
 def offline_values():
+    if os.path.isfile('./values.csv'):
+        print('Si puedo encontrar el archivo')
+
     one_dollar_float = 1
     one_cop_float = 1
     print('El dolar en este momento tiene un valor de: ${} COP'.format(one_dollar_float))
     operate(one_dollar_float, one_cop_float)
+
+def save(one_dollar_float, one_cop_float):
+    with open('values.csv', 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(('USD', 'COP'))
+        writer.writerow((one_dollar_float, one_cop_float))
 
 def operate(one_dollar_float, one_cop_float):
 
