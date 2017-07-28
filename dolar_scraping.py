@@ -33,9 +33,9 @@ def online_values():
 def offline_values():
     if os.path.isfile('./values.csv'):
         print('Si puedo encontrar el archivo')
-
-    one_dollar_float = 1
-    one_cop_float = 1
+    else:
+        one_dollar_float = 3000
+        one_cop_float = 0.0003
     print('El dolar en este momento tiene un valor de: ${} COP'.format(one_dollar_float))
     operate(one_dollar_float, one_cop_float)
 
