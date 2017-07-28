@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 
 def main():
     try:
-        online_request()
+        online_values()
     except requests.exceptions.ConnectionError as e:
-        print('No hay Internet')
+        offline_values()
 
-def online_request():
+def online_values():
     response_one_dollar= requests.get('http://www.xe.com/es/currencyconverter/convert/?Amount=1&From=USD&To=COP')
     soup_one_dollar = BeautifulSoup(response_one_dollar.content, 'html.parser')
     container_dollar = soup_one_dollar.find('span', 'uccResultAmount')
@@ -24,6 +24,12 @@ def online_request():
     one_cop_without_dot = one_cop.replace('.', '')
     one_cop_ready_to_parse = one_cop_without_dot.replace(',', '.')
     one_cop_float = float(one_cop_ready_to_parse)
+    operate(one_dollar_float, one_cop_float)
+
+def offline_values():
+    one_dollar_float = 1
+    one_cop_float = 1
+    print('El dolar en este momento tiene un valor de: ${} COP'.format(one_dollar_float))
     operate(one_dollar_float, one_cop_float)
 
 def operate(one_dollar_float, one_cop_float):
