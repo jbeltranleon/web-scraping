@@ -32,7 +32,15 @@ def online_values():
 
 def offline_values():
     if os.path.isfile('./values.csv'):
-        print('Si puedo encontrar el archivo')
+        with open('values.csv', 'r') as f:
+            reader = csv.reader(f)
+            for idx, row in enumerate(reader):
+                if idx == 0:
+                    continue
+
+                one_dollar_float = row[0]
+                one_cop_float = row[1]
+
     else:
         one_dollar_float = 3000
         one_cop_float = 0.0003
