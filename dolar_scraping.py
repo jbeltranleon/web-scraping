@@ -38,8 +38,8 @@ def offline_values():
                 if idx == 0:
                     continue
 
-                one_dollar_float = row[0]
-                one_cop_float = row[1]
+                one_dollar_float = float(row[0])
+                one_cop_float = float(row[1])
 
     else:
         one_dollar_float = 3000
